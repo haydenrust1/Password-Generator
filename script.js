@@ -3,15 +3,32 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function generatePassword() {
-  // var questions = [
-  //   {q:'choose length of password between 8 and 128 characters.', a:}
-  // ];
+  //empty array to push user responses to
+  var array = [];
 
-  var length = prompt('choose length of password between 8 and 128 characters.');
-  var lowerCase = confirm('Does your password need lowercase?');
-  var upperCase = confirm('Does your password need uppercase?');
-  var number = confirm('Does your password need numbers?');
-  var special = confirm('Does your password need special characters?');
+  //questions for user
+  var questions = [
+      {charAmount: prompt('choose length of password between 8 and 128 characters.')}, 
+      {lowerCase: confirm('Does your password need lowercase?')}, 
+      {upperCase: confirm('Does your password need uppercase?')}, 
+      {number: confirm('Does your password need numbers?')}, 
+      {special: confirm('Does your password need special characters?')}
+  ];
+  
+  for (var i = 0; i < questions.length; i++){
+     array.push(questions.charAmount);
+  }
+  
+  console.log(questions.charAmount);
+  console.log(array);
+  
+
+  /* Should I keep this? */
+  // var length = prompt('choose length of password between 8 and 128 characters.');
+  // var lowerCase = confirm('Does your password need lowercase?');
+  // var upperCase = confirm('Does your password need uppercase?');
+  // var number = confirm('Does your password need numbers?');
+  // var special = confirm('Does your password need special characters?');
 
   
 };
