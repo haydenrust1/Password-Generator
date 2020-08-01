@@ -19,38 +19,59 @@ function generatePassword() {
     specialChar: `\`!\\"#$%&'()*+,-./:;<=>?@[]^_{}|~`,
   };
 
+  //function for selecting a random letter
+  function randomChar() {
+    return passCrit.letters.charAt(Math.floor(Math.random() * passCrit.length));
+  }
+
   //validation of character length and lowerCase letters
-  if (passCrit.length > 7 && passCrit.length < 129 && lowerCase) {
+  if (passCrit.length > 7 && passCrit.length < 129 && passCrit.lowerCase) {
     //loop through users desired length
     for (var i = 0; i < passCrit.length; i++) {
       //pushing letters to password
-      var randomChar = passCrit.letters.charAt(
-        Math.floor(Math.random() * passCrit.length)
-      );
-      userPassword.push(randomChar);
+      userPassword.push(randomChar());
     }
   } else {
     alert('Please choose a password length between 8 and 128 characters!!!');
   }
 
-  //determing if lower case characters are needed
-  if (passCrit.lowerCase) {
-    // userPassword = userPassword.substr(0, passCrit.length);
+  //selects random placement in password
+  // var randomPassChar =
+  //   userPassword[Math.floor(Math.random() * passCrit.length)];
+
+  // determing if upper case characters are needed and replacing if so
+  if (passCrit.upperCase) {
+    userPassword = userPassword
+      .join('')
+      .replace(userPassword[3], randomChar().toUpperCase());
+  }
+
+  // determing if numbers are needed and replacing if so
+  if (
+    passCrit.number &&
+    userPassword != userPassword.includes(passCrit.numbers)
+  ) {
+    userPassword = userPassword.replace(
+      userPassword[0],
+      passCrit.numbers.charAt(Math.floor(Math.random() * passCrit.length))
+    );
+  }
+
+  //determing if special characters are needed and replacing if so
+  if (
+    passCrit.special &&
+    userPassword !== userPassword.includes(passCrit.specialChar)
+  ) {
+    userPassword = userPassword.replace(
+      userPassword[7],
+      passCrit.specialChar.charAt(Math.floor(Math.random() * passCrit.length))
+    );
   }
 
   console.log(userPassword);
   console.log(passCrit.length);
-  console.log(passCrit.specialChar);
 
-  return userPassword.join('');
-
-  // var length = prompt(
-  //   'Please choose a password length between 8 and 128 characters'
-  // );
-  // var lowerCase = confirm('Does your password need lowercase?');
-  // var upperCase = confirm('Does your password need uppercase?');
-  // var number = confirm('Does your password need numbers?');
-  // var special = confirm('Does your password need special characters?');
+  return userPassword;
 }
 
 function writePassword() {
