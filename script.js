@@ -3,7 +3,7 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function generatePassword() {
-  var password = '#';
+  var password = [];
 
   //Password Criteria
   var passCrit = {
@@ -14,6 +14,7 @@ function generatePassword() {
     upperCase: confirm('Does your password need uppercase characters?'),
     number: confirm('Does your password need numbers?'),
     special: confirm('Does your password need special characters?'),
+    characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   };
 
   //creating length of password
